@@ -1,26 +1,6 @@
+'use client'
+import { useTaskStore } from '@/lib/store'
 import Task from './task'
-
-const tasks = [
-  {
-    id: '2',
-    title: 'Our first task',
-    description: 'Some description',
-    status: 'IN_PROGRESS'
-  },
-  {
-    id: '3',
-    title: 'Our first task',
-    description: 'Some description',
-    status: 'DONE'
-  },
-  {
-    id: '1',
-    title: 'Our first task',
-    description: 'Some description',
-    status: 'TODO'
-  }
-]
-
 export default function Column({
   title,
   status
@@ -28,9 +8,8 @@ export default function Column({
   title: string
   status: string
 }) {
+  const tasks = useTaskStore(state => state.tasks)
   const filteredTasks = tasks.filter(task => task.status === status)
-  console.log(filteredTasks);
-  
   return (
     <section className='h-[600px] flex-1'>
       <h2 className='ml-1 font-serif text-2xl font-semibold'>{title}</h2>
